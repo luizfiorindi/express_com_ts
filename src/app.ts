@@ -94,6 +94,14 @@ app.get(
   }
 );
 
+app.get("/api/error", (req: Request, res: Response) => {
+  try {
+    throw new Error("Algo deu errado");
+  } catch (e: any) {
+    res.status(500).json({ msg: e.message });
+  }
+});
+
 app.listen(3000, () => {
   console.log("Aplicação de TS + Express funcionando");
 });
